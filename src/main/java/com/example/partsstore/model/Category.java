@@ -1,20 +1,25 @@
 package com.example.partsstore.model;
 
 public class Category {
-    private String id;
+    private int id;
     private String name;
+    private String icon;
 
-    public Category(String id, String name) {
+    public Category() {}
+
+    public Category(int id, String name, String icon) {
         this.id = id;
         this.name = name;
+        this.icon = icon;
     }
-    public String getId() { return id; }
+
+    // Getters and Setters
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+
     public String getName() { return name; }
-    public void setId(String id) { this.id = id; }
     public void setName(String name) { this.name = name; }
 
-    @Override
-    public String toString() {
-        return name;
-    }
+    public String getIcon() { return icon; }
+    public void setIcon(String icon) { this.icon = icon; }
 }

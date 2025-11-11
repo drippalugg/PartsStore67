@@ -1,71 +1,91 @@
 package com.example.partsstore.service;
 
-import java.net.URI;
-import java.net.http.*;
-import java.nio.charset.StandardCharsets;
-import org.json.JSONObject;
+import com.example.partsstore.model.User;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
+import java.io.IOException;
+import java.net.http.HttpResponse;
 
 public class SupabaseAuthService {
-    private static final String SUPABASE_URL = "https://uarcxsotrpdnwabpgjhp.supabase.co";
-    private static final String SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVhcmN4c290cnBkbndhYnBnamhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI4NjU5OTMsImV4cCI6MjA3ODQ0MTk5M30.nR2JZDVWD3wtdVYehE6ps6x35NClNBw1niNEA42qKGc";
+    private final SupabaseClient client;
+    private final Gson gson;
+    private User currentUser;
+    private String accessToken;
 
-    private static final HttpClient httpClient = HttpClient.newHttpClient();
-
-    public static boolean register(String email, String password) {
-        try {
-            JSONObject data = new JSONObject()
-                    .put("email", email)
-                    .put("password", password);
-
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(SUPABASE_URL + "/auth/v1/signup"))
-                    .header("apikey", SUPABASE_ANON_KEY)
-                    .header("Content-Type", "application/json")
-                    .POST(HttpRequest.BodyPublishers.ofString(data.toString(), StandardCharsets.UTF_8))
-                    .build();
-
-            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-
-            if (response.statusCode() == 200 || response.statusCode() == 201) {
-                return true;
-            } else {
-                System.err.println("Ошибка регистрации: HTTP Status = " + response.statusCode());
-                System.err.println("Тело ответа: " + response.body());
-                return false;
-            }
-        } catch (Exception e) {
-            System.err.println("Исключение при регистрации: " + e.getMessage());
-            e.printStackTrace();
-            return false;
-        }
+    public SupabaseAuthService() {
+        this.client = SupabaseClient.getInstance();
+        this.gson = new Gson();
     }
 
-    public static boolean login(String email, String password) {
+    public boolean login(String email, String password) {
         try {
-            JSONObject data = new JSONObject()
-                    .put("email", email)
-                    .put("password", password);
+            JsonObject credentials = new JsonObject();
+            credentials.addProperty("email", email);
+            credentials.addProperty("password", password);
 
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(SUPABASE_URL + "/auth/v1/token?grant_type=password"))
-                    .header("apikey", SUPABASE_ANON_KEY)
-                    .header("Content-Type", "application/json")
-                    .POST(HttpRequest.BodyPublishers.ofString(data.toString(), StandardCharsets.UTF_8))
-                    .build();
-
-            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> response = client.post(
+                    "/auth/v1/token?grant_type=password",
+                    gson.toJson(credentials)
+            );
 
             if (response.statusCode() == 200) {
+                JsonObject jsonResponse = gson.fromJson(response.body(), JsonObject.class);
+                accessToken = jsonResponse.get("access_token").getAsString();
+
+                JsonObject userJson = jsonResponse.getAsJsonObject("user");
+                currentUser = new User(
+                        userJson.get("id").getAsString(),
+                        userJson.get("email").getAsString(),
+                        email.split("@")[0]
+                );
+
                 return true;
-            } else {
-                System.err.println("Ошибка входа: HTTP Status = " + response.statusCode());
-                System.err.println("Тело ответа: " + response.body());
-                return false;
             }
         } catch (Exception e) {
-            System.err.println("Исключение при входе: " + e.getMessage());
             e.printStackTrace();
-            return false;
         }
+        return false;
+    }
+
+    public boolean register(String email, String password, String name) {
+        try {
+            JsonObject credentials = new JsonObject();
+            credentials.addProperty("email", email);
+            credentials.addProperty("password", password);
+
+            JsonObject metadata = new JsonObject();
+            metadata.addProperty("name", name);
+            credentials.add("data", metadata);
+
+            HttpResponse<String> response = client.post(
+                    "/auth/v1/signup",
+                    gson.toJson(credentials)
+            );
+
+            if (response.statusCode() == 200) {
+                return login(email, password);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public void logout() {
+        currentUser = null;
+        accessToken = null;
+    }
+
+    public boolean isLoggedIn() {
+        return currentUser != null;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public String getAccessToken() {
+        return accessToken;
     }
 }

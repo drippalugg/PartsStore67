@@ -1,40 +1,76 @@
 package com.example.partsstore.service;
 
+import java.io.IOException;
 import java.net.URI;
-import java.net.http.*;
-import org.json.JSONObject;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 public class SupabaseClient {
-    public static final String SUPABASE_API_URL = "https://your-project-ref.supabase.co";
-    public static final String SUPABASE_API_KEY = "public-anon-key";
+    private static SupabaseClient instance;
+    private final String supabaseUrl;
+    private final String supabaseKey;
+    private final HttpClient httpClient;
 
-    public static boolean register(String email, String password) {
-        try {
-            JSONObject data = new JSONObject().put("email", email).put("password", password);
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(SUPABASE_API_URL + "/auth/v1/signup"))
-                    .header("apikey", SUPABASE_API_KEY)
-                    .header("Content-Type", "application/json")
-                    .POST(HttpRequest.BodyPublishers.ofString(data.toString()))
-                    .build();
-            HttpClient client = HttpClient.newHttpClient();
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            return response.statusCode() == 200;
-        } catch (Exception e) { e.printStackTrace(); return false; }
+    private SupabaseClient() {
+        // Замените на ваши реальные данные Supabase
+        this.supabaseUrl = "https://your-project.supabase.co";
+        this.supabaseKey = "your-anon-key";
+        this.httpClient = HttpClient.newHttpClient();
     }
 
-    public static boolean login(String email, String password) {
-        try {
-            JSONObject data = new JSONObject().put("email", email).put("password", password);
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(SUPABASE_API_URL + "/auth/v1/token?grant_type=password"))
-                    .header("apikey", SUPABASE_API_KEY)
-                    .header("Content-Type", "application/json")
-                    .POST(HttpRequest.BodyPublishers.ofString(data.toString()))
-                    .build();
-            HttpClient client = HttpClient.newHttpClient();
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            return response.statusCode() == 200;
-        } catch (Exception e) { e.printStackTrace(); return false; }
+    public static synchronized SupabaseClient getInstance() {
+        if (instance == null) {
+            instance = new SupabaseClient();
+        }
+        return instance;
+    }
+
+    public HttpResponse<String> get(String endpoint) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(supabaseUrl + endpoint))
+                .header("apikey", supabaseKey)
+                .header("Authorization", "Bearer " + supabaseKey)
+                .header("Content-Type", "application/json")
+                .GET()
+                .build();
+
+        return httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+    }
+
+    public HttpResponse<String> post(String endpoint, String jsonBody) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(supabaseUrl + endpoint))
+                .header("apikey", supabaseKey)
+                .header("Authorization", "Bearer " + supabaseKey)
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
+                .build();
+
+        return httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+    }
+
+    public HttpResponse<String> patch(String endpoint, String jsonBody) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(supabaseUrl + endpoint))
+                .header("apikey", supabaseKey)
+                .header("Authorization", "Bearer " + supabaseKey)
+                .header("Content-Type", "application/json")
+                .method("PATCH", HttpRequest.BodyPublishers.ofString(jsonBody))
+                .build();
+
+        return httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+    }
+
+    public HttpResponse<String> delete(String endpoint) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(supabaseUrl + endpoint))
+                .header("apikey", supabaseKey)
+                .header("Authorization", "Bearer " + supabaseKey)
+                .header("Content-Type", "application/json")
+                .DELETE()
+                .build();
+
+        return httpClient.send(request, HttpResponse.BodyHandlers.ofString());
     }
 }

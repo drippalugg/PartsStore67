@@ -1,33 +1,61 @@
 package com.example.partsstore.model;
 
 public class Part {
-    private String id;
+    private int id;
     private String name;
-    private String description;
+    private int categoryId;
     private double price;
-    private String categoryId;
+    private Double oldPrice;
+    private String article;
+    private String brand;
+    private String description;
+    private String image;
 
-    public Part() {
-    }
+    public Part() {}
 
-    public Part(String id, String name, String description, double price, String categoryId) {
+    public Part(int id, String name, int categoryId, double price, String article, String brand) {
         this.id = id;
         this.name = name;
-        this.description = description;
-        this.price = price;
         this.categoryId = categoryId;
+        this.price = price;
+        this.article = article;
+        this.brand = brand;
     }
 
-    // геттеры и сеттеры для всех полей
-    public String getId() { return id; }
-    public String getName() { return name; }
-    public String getDescription() { return description; }
-    public double getPrice() { return price; }
-    public String getCategoryId() { return categoryId; }
+    // Getters and Setters
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public void setId(String id) { this.id = id; }
+    public String getName() { return name; }
     public void setName(String name) { this.name = name; }
-    public void setDescription(String description) { this.description = description; }
+
+    public int getCategoryId() { return categoryId; }
+    public void setCategoryId(int categoryId) { this.categoryId = categoryId; }
+
+    public double getPrice() { return price; }
     public void setPrice(double price) { this.price = price; }
-    public void setCategoryId(String categoryId) { this.categoryId = categoryId; }
+
+    public Double getOldPrice() { return oldPrice; }
+    public void setOldPrice(Double oldPrice) { this.oldPrice = oldPrice; }
+
+    public String getArticle() { return article; }
+    public void setArticle(String article) { this.article = article; }
+
+    public String getBrand() { return brand; }
+    public void setBrand(String brand) { this.brand = brand; }
+
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+
+    public String getImage() { return image; }
+    public void setImage(String image) { this.image = image; }
+
+    public boolean hasDiscount() {
+        return oldPrice != null && oldPrice > price;
+    }
+
+    public int getDiscountPercent() {
+        if (!hasDiscount()) return 0;
+        return (int) Math.round(((oldPrice - price) / oldPrice) * 100);
+    }
 }
