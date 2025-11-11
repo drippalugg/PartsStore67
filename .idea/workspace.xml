@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f76216fb-6ef4-43b5-8da6-7e0e453340da" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/CatalogWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/CatalogWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/MainApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/model/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/model/Part.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/model/Part.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/service/PartsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/service/PartsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/service/SupabaseAuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/service/SupabaseAuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/service/SupabaseClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/service/SupabaseClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/AuthWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/AuthWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/CartWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/CartWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/CatalogWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/CatalogWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/FavoritesWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/FavoritesWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/LoginRegisterWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/LoginRegisterWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/MainScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/MasterPartsMainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/MasterPartsMainWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/OrdersWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/OrdersWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/ProfileWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/ProfileWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="FxmlFile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "drippalugg"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/drippalugg/PartsStoreKurs.git",
+    "accountId": "9c574614-aae4-48a9-9088-32e270e57c10"
+  }
+}]]></component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6
+}]]></component>
+  <component name="ProjectId" id="35LGu3GGVURdYS9mvDbxtGUZM7K" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.MainApp.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="MainApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.partsstore.MainApp" />
+      <module name="PartsStore" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.partsstore.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MainApp" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f76216fb-6ef4-43b5-8da6-7e0e453340da" name="Changes" comment="" />
+      <created>1762882158361</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1762882158361</updated>
+    </task>
+    <servers />
+  </component>
+</project>
