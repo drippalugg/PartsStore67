@@ -20,6 +20,7 @@ public class AuthWindow extends VBox {
         passwordField.setPromptText("Пароль");
 
         Button loginBtn = new Button("Войти");
+        Button registerBtn = new Button("Регистрация");
         Label messageLabel = new Label();
 
         loginBtn.setOnAction(e -> {
@@ -31,14 +32,15 @@ public class AuthWindow extends VBox {
                 return;
             }
 
-            // Эмулируем успешную авторизацию
             User user = new User(email, "Иван", "Иванов", "+7 900 123-45-67");
             openMainScreen(user);
         });
 
+        registerBtn.setOnAction(e -> openRegistrationWindow());
+
         setSpacing(10);
         setPadding(new javafx.geometry.Insets(20));
-        getChildren().addAll(emailField, passwordField, loginBtn, messageLabel);
+        getChildren().addAll(emailField, passwordField, loginBtn, registerBtn, messageLabel);
     }
 
     private void openMainScreen(User user) {
@@ -48,5 +50,12 @@ public class AuthWindow extends VBox {
             stage.setScene(scene);
             stage.setTitle("MasterParts");
         });
+    }
+
+    private void openRegistrationWindow() {
+        RegistrationWindow registrationWindow = new RegistrationWindow(stage);
+        Scene scene = new Scene(registrationWindow, 400, 300);
+        stage.setScene(scene);
+        stage.setTitle("Регистрация");
     }
 }

@@ -8,26 +8,16 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class OrdersWindow extends VBox {
-    private Stage stage;
-    private User currentUser;
-
-    public OrdersWindow(Stage stage, User user) {
-        this.stage = stage;
-        this.currentUser = user;
-
+    public OrdersWindow(Stage stage, User user, MainScreen mainScreen) {
         setPadding(new Insets(20));
         setSpacing(12);
 
-        Label title = new Label("Ваши заказы");
-        title.setStyle("-fx-font-size: 22; -fx-font-weight: bold;");
-
         Button backBtn = new Button("Назад");
-        backBtn.setOnAction(e -> {
-            MainScreen main = new MainScreen(stage, currentUser);
-            stage.setScene(new Scene(main, 1300, 800));
-            stage.setTitle("MasterParts");
-        });
+        backBtn.setOnAction(e -> mainScreen.openMainScreen());
 
-        getChildren().addAll(title, backBtn);
+        Label label = new Label("Ваши заказы");
+        label.setStyle("-fx-font-size: 22; -fx-font-weight: bold;");
+
+        getChildren().addAll(backBtn, label);
     }
 }

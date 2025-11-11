@@ -9,25 +9,27 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 public class MainScreen extends BorderPane {
-    private Stage stage;
-    private User currentUser;
+    private final Stage stage;
+    private final User currentUser;
 
-    public MainScreen(Stage stage, User user) {
+    public MainScreen(Stage stage, User currentUser) {
         this.stage = stage;
-        this.currentUser = user;
+        this.currentUser = currentUser;
 
         setStyle("-fx-background-color: #fff;");
 
         HBox topMenu = new HBox(20);
-        topMenu.setAlignment(Pos.CENTER_LEFT);
         topMenu.setPadding(new Insets(20, 40, 20, 40));
+        topMenu.setAlignment(Pos.CENTER_LEFT);
 
         Label cityLabel = new Label("Энгельс");
         Label storeLabel = new Label("MasterParts");
-        Label userLabel = new Label("Пользователь: " + currentUser.getEmail());
 
-        HBox iconsBox = new HBox(18);
-        iconsBox.setAlignment(Pos.CENTER_RIGHT);
+        Button profileBtn = new Button("Личный кабинет");
+        profileBtn.setOnAction(e -> openProfileWindow());
+
+        Button cartBtn = new Button("Корзина");
+        cartBtn.setOnAction(e -> openCartWindow());
 
         Button ordersBtn = new Button("Заказы");
         ordersBtn.setOnAction(e -> openOrdersWindow());
@@ -35,60 +37,44 @@ public class MainScreen extends BorderPane {
         Button favoritesBtn = new Button("Избранное");
         favoritesBtn.setOnAction(e -> openFavoritesWindow());
 
-        Button cartBtn = new Button("Корзина");
-        cartBtn.setOnAction(e -> openCartWindow());
-
-        Button profileBtn = new Button("Личный кабинет");
-        profileBtn.setOnAction(e -> openProfileWindow());
-
-        iconsBox.getChildren().addAll(ordersBtn, favoritesBtn, cartBtn, profileBtn);
-
+        HBox rightMenu = new HBox(15, ordersBtn, favoritesBtn, cartBtn, profileBtn);
+        rightMenu.setAlignment(Pos.CENTER_RIGHT);
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
-
-        TextField searchField = new TextField();
-        searchField.setPromptText("Поиск по названию, артикулу, бренду");
-        searchField.setPrefWidth(350);
-
-        Button searchBtn = new Button("🔍");
-
-        topMenu.getChildren().addAll(cityLabel, storeLabel, spacer, searchField, searchBtn, iconsBox);
+        topMenu.getChildren().addAll(cityLabel, storeLabel, spacer, rightMenu);
         setTop(topMenu);
+
+        // Категории/каталог
+        setCenter(new Label("Категории автозапчастей"));
+
+        getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
     }
 
-    private void openProfileWindow() {
-        ProfileWindow profileWindow = new ProfileWindow(stage, currentUser);
-        Button backBtn = new Button("Назад");
-        backBtn.setOnAction(e -> openMainScreen());
-
-        VBox root = new VBox(15, backBtn, profileWindow);
-        root.setPadding(new Insets(20));
-
-        stage.setScene(new Scene(root, 500, 400));
-        stage.setTitle("Личный кабинет");
-    }
-
-    private void openMainScreen() {
+    public void openMainScreen() {
         Scene scene = new Scene(this, 1300, 800);
+        scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
         stage.setScene(scene);
         stage.setTitle("MasterParts");
     }
 
-    private void openOrdersWindow() {
-        OrdersWindow ordersWindow = new OrdersWindow(stage, currentUser);
-        stage.setScene(new Scene(ordersWindow, 800, 600));
-        stage.setTitle("Мои заказы");
+    private void openProfileWindow() {
+        stage.setScene(new Scene(new ProfileWindow(stage, currentUser, this), 600, 500));
+        stage.getScene().getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+        stage.setTitle("Личный кабинет");
     }
-
-    private void openFavoritesWindow() {
-        FavoritesWindow favoritesWindow = new FavoritesWindow(stage, currentUser);
-        stage.setScene(new Scene(favoritesWindow, 800, 600));
-        stage.setTitle("Избранное");
-    }
-
     private void openCartWindow() {
-        CartWindow cartWindow = new CartWindow(stage, currentUser);
-        stage.setScene(new Scene(cartWindow, 800, 600));
+        stage.setScene(new Scene(new CartWindow(stage, currentUser, this), 800, 600));
+        stage.getScene().getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
         stage.setTitle("Корзина");
+    }
+    private void openOrdersWindow() {
+        stage.setScene(new Scene(new OrdersWindow(stage, currentUser, this), 800, 600));
+        stage.getScene().getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+        stage.setTitle("Заказы");
+    }
+    private void openFavoritesWindow() {
+        stage.setScene(new Scene(new FavoritesWindow(stage, currentUser, this), 800, 600));
+        stage.getScene().getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+        stage.setTitle("Избранное");
     }
 }

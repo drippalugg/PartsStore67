@@ -2,33 +2,21 @@ package com.example.partsstore.view;
 
 import com.example.partsstore.model.User;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class CartWindow extends VBox {
-    private Stage stage;
-    private User currentUser;
-
-    public CartWindow(Stage stage, User user) {
-        this.stage = stage;
-        this.currentUser = user;
-
+    public CartWindow(Stage stage, User user, MainScreen mainScreen) {
         setPadding(new Insets(20));
         setSpacing(12);
+
+        Button backBtn = new Button("Назад");
+        backBtn.setOnAction(e -> mainScreen.openMainScreen());
 
         Label label = new Label("Ваша корзина");
         label.setStyle("-fx-font-size: 22; -fx-font-weight: bold;");
 
-        Button backBtn = new Button("Назад");
-        backBtn.setOnAction(e -> {
-            MainScreen main = new MainScreen(stage, currentUser);
-            stage.setScene(new Scene(main, 1300, 800));
-            stage.setTitle("MasterParts");
-        });
-
-        getChildren().addAll(label, backBtn);
+        getChildren().addAll(backBtn, label);
     }
 }

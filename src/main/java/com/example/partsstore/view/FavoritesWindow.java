@@ -8,26 +8,17 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class FavoritesWindow extends VBox {
-    private Stage stage;
-    private User currentUser;
-
-    public FavoritesWindow(Stage stage, User user) {
-        this.stage = stage;
-        this.currentUser = user;
-
+    public FavoritesWindow(Stage stage, User user, MainScreen mainScreen) {
         setPadding(new Insets(20));
         setSpacing(12);
 
-        Label title = new Label("Избранные товары");
-        title.setStyle("-fx-font-size: 22; -fx-font-weight: bold;");
-
         Button backBtn = new Button("Назад");
-        backBtn.setOnAction(e -> {
-            MainScreen main = new MainScreen(stage, currentUser);
-            stage.setScene(new Scene(main, 1300, 800));
-            stage.setTitle("MasterParts");
-        });
+        backBtn.setOnAction(e -> mainScreen.openMainScreen());
 
-        getChildren().addAll(title, backBtn);
+        Label label = new Label("Избранное");
+        label.setStyle("-fx-font-size: 22; -fx-font-weight: bold;");
+
+        getChildren().addAll(backBtn, label);
     }
 }
+

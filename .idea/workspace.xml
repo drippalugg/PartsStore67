@@ -4,27 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f76216fb-6ef4-43b5-8da6-7e0e453340da" name="Changes" comment="">
+    <list default="true" id="f76216fb-6ef4-43b5-8da6-7e0e453340da" name="Changes" comment="Initial commit">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/RegistrationWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/CatalogWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/CatalogWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/MainApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/model/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/model/Part.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/model/Part.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/service/PartsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/service/PartsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/service/SupabaseAuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/service/SupabaseAuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/service/SupabaseClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/service/SupabaseClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/AuthWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/AuthWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/CartWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/CartWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/CatalogWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/CatalogWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/FavoritesWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/FavoritesWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/LoginRegisterWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/LoginRegisterWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/MainScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/MasterPartsMainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/MasterPartsMainWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/MasterPartsMainWindow.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/OrdersWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/OrdersWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/ProfileWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/partsstore/view/ProfileWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,8 +24,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -109,6 +98,19 @@
       <option name="presentableId" value="Default" />
       <updated>1762882158361</updated>
     </task>
+    <task id="LOCAL-00001" summary="Initial commit">
+      <option name="closed" value="true" />
+      <created>1762895673279</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1762895673279</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
   </component>
 </project>
