@@ -54,13 +54,13 @@ public class OrdersController {
         Label orderNumberLabel = new Label("Заказ #" + order.getId());
         orderNumberLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
 
-        Label dateLabel = new Label("Дата: " + order.getDate());
+        Label dateLabel = new Label("Дата: " + order.getCreatedAt());
         dateLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #666666;");
 
         Label statusLabel = new Label("Статус: " + order.getStatus());
         statusLabel.setStyle("-fx-font-size: 14px;");
 
-        Label totalLabel = new Label("Сумма: " + order.getTotalPrice() + " ₽");
+        Label totalLabel = new Label("Сумма: " + order.getTotalAmount() + " ₽");
         totalLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
 
         card.getChildren().addAll(orderNumberLabel, dateLabel, statusLabel, totalLabel);
