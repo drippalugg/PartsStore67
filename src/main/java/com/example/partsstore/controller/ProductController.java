@@ -2,6 +2,7 @@ package com.example.partsstore.controller;
 
 import com.example.partsstore.model.Part;
 import com.example.partsstore.service.CartManager;
+import com.example.partsstore.util.SceneNavigator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -136,9 +137,9 @@ public class ProductController {
         }
 
         cartManager.addToCart(currentPart, quantity);
-        System.out.println("🛒 Added to cart: " + currentPart.getName() + " x" + quantity);
+        System.out.println("🛒 Добавлено в корзину: " + currentPart.getName() + " x" + quantity);
 
-        // TODO: Открыть корзину
+        SceneNavigator.goToCart();
     }
 
     @FXML
@@ -150,10 +151,10 @@ public class ProductController {
 
         if (cartManager.isFavorite(currentPart)) {
             cartManager.removeFromFavorites(currentPart);
-            System.out.println("💔 Removed from favorites: " + currentPart.getName());
+            System.out.println("💔 Удалено из избранного: " + currentPart.getName());
         } else {
             cartManager.addToFavorites(currentPart);
-            System.out.println("❤️ Added to favorites: " + currentPart.getName());
+            System.out.println("❤️ Добавлено в избранное: " + currentPart.getName());
         }
 
         updateFavoriteButton();
@@ -161,7 +162,7 @@ public class ProductController {
 
     @FXML
     private void goBack() {
-        System.out.println("← Go back clicked");
-        // TODO: Вернуться назад
+        System.out.println("← Возврат назад");
+        SceneNavigator.goToMain();
     }
 }

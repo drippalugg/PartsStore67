@@ -9,7 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-public class SceneManager {
+public class SceneNavigator {
 
     public static void goToMain() {
         loadScene("/com/example/partsstore/view/main.fxml", "MasterParts - Энгельс", 1280, 800);
@@ -18,7 +18,7 @@ public class SceneManager {
     public static void goToCategory(Category category) {
         try {
             FXMLLoader loader = new FXMLLoader(
-                    SceneManager.class.getResource("/com/example/partsstore/view/category.fxml")
+                    SceneNavigator.class.getResource("/com/example/partsstore/view/category.fxml")
             );
             Parent root = loader.load();
 
@@ -39,7 +39,7 @@ public class SceneManager {
     public static void goToProduct(Part part) {
         try {
             FXMLLoader loader = new FXMLLoader(
-                    SceneManager.class.getResource("/com/example/partsstore/view/product.fxml")
+                    SceneNavigator.class.getResource("/com/example/partsstore/view/product.fxml")
             );
             Parent root = loader.load();
 
@@ -71,7 +71,7 @@ public class SceneManager {
 
     private static void loadScene(String fxmlPath, String title, int width, int height) {
         try {
-            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource(fxmlPath));
+            FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource(fxmlPath));
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
@@ -88,7 +88,7 @@ public class SceneManager {
     }
 
     private static void addCSS(Scene scene) {
-        var cssUrl = SceneManager.class.getResource("/css/styles.css");
+        var cssUrl = SceneNavigator.class.getResource("/css/styles.css");
         if (cssUrl != null) {
             scene.getStylesheets().add(cssUrl.toExternalForm());
         }

@@ -1,19 +1,29 @@
 package com.example.partsstore.controller;
 
 import com.example.partsstore.service.SupabaseAuthService;
-import com.example.partsstore.util.SceneManager;
+import com.example.partsstore.util.SceneNavigator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 
 public class LoginController {
 
-    @FXML private TextField emailField;
-    @FXML private PasswordField passwordField;
-    @FXML private TextField nameField;
-    @FXML private Label errorLabel;
-    @FXML private javafx.scene.layout.VBox registerBox;
+    @FXML
+    private TextField emailField;
+
+    @FXML
+    private PasswordField passwordField;
+
+    @FXML
+    private TextField nameField;
+
+    @FXML
+    private Label errorLabel;
+
+    @FXML
+    private VBox registerBox;
 
     private SupabaseAuthService authService;
     private boolean isRegisterMode = false;
@@ -21,8 +31,17 @@ public class LoginController {
     @FXML
     public void initialize() {
         authService = new SupabaseAuthService();
-        registerBox.setVisible(false);
-        registerBox.setManaged(false);
+
+        if (registerBox != null) {
+            registerBox.setVisible(false);
+            registerBox.setManaged(false);
+        }
+
+        if (errorLabel != null) {
+            errorLabel.setText("");
+        }
+
+        System.out.println("✅ LoginController initialized!");
     }
 
     @FXML
@@ -35,10 +54,18 @@ public class LoginController {
             return;
         }
 
+        if (!isValidEmail(email)) {
+            showError("Неверный формат email");
+            return;
+        }
+
+        System.out.println("🔐 Попытка входа: " + email);
+
         boolean success = authService.login(email, password);
 
         if (success) {
-            SceneManager.loadScene("main");
+            System.out.println("✅ Вход успешен!");
+            SceneNavigator.goToMain();
         } else {
             showError("Неверный email или пароль");
         }
@@ -55,40 +82,62 @@ public class LoginController {
             return;
         }
 
+        if (!isValidEmail(email)) {
+            showError("Неверный формат email");
+            return;
+        }
+
         if (password.length() < 6) {
             showError("Пароль должен содержать минимум 6 символов");
             return;
         }
 
+        System.out.println("📝 Попытка регистрации: " + email);
+
         boolean success = authService.register(email, password, name);
 
         if (success) {
-            SceneManager.loadScene("main");
+            System.out.println("✅ Регистрация успешна!");
+            SceneNavigator.goToMain();
         } else {
-            showError("Ошибка регистрации. Возможно, email уже используется");
+            showError("Ошибка регистрации. Email уже используется");
         }
     }
 
     @FXML
     private void toggleMode() {
         isRegisterMode = !isRegisterMode;
-        registerBox.setVisible(isRegisterMode);
-        registerBox.setManaged(isRegisterMode);
-        errorLabel.setText("");
+
+        if (registerBox != null) {
+            registerBox.setVisible(isRegisterMode);
+            registerBox.setManaged(isRegisterMode);
+        }
+
+        if (errorLabel != null) {
+            errorLabel.setText("");
+        }
     }
 
     @FXML
     private void guestContinue() {
-        SceneManager.loadScene("main");
-    }
-
-    private void showError(String message) {
-        errorLabel.setText(message);
-        errorLabel.setStyle("-fx-text-fill: red;");
+        System.out.println("👤 Продолжить как гость");
+        SceneNavigator.goToMain();
     }
 
     @FXML
     private void goBack() {
-        SceneManager.loadScene("main");
+        System.out.println("← Go back clicked");
+        SceneNavigator.goToMain();
+    }
+
+    private void showError(String message) {
+        if (errorLabel != null) {
+            errorLabel.setText(message);
+            errorLabel.setStyle("-fx-text-fill: red; -fx-font-size: 13px;");
+        }
+    }
+
+    private boolean isValidEmail(String email) {
+        return email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
     }
 }

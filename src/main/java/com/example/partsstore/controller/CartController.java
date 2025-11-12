@@ -3,6 +3,7 @@ package com.example.partsstore.controller;
 import com.example.partsstore.model.CartItem;
 import com.example.partsstore.service.CartManager;
 import com.example.partsstore.service.SupabaseAuthService;
+import com.example.partsstore.util.SceneNavigator;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -35,6 +36,8 @@ public class CartController {
         cartManager = CartManager.getInstance();
         authService = new SupabaseAuthService();
         loadCart();
+
+        System.out.println("✅ CartController initialized!");
     }
 
     private void loadCart() {
@@ -121,10 +124,12 @@ public class CartController {
     @FXML
     private void checkout() {
         if (!authService.isLoggedIn()) {
-            System.out.println("⚠️ User not logged in");
+            System.out.println("⚠️ Требуется авторизация");
+            SceneNavigator.goToLogin();
             return;
         }
 
+        System.out.println("✅ Оформление заказа");
         cartManager.clearCart();
         loadCart();
 
@@ -135,11 +140,13 @@ public class CartController {
 
     @FXML
     private void continueShopping() {
-        System.out.println("Continue shopping clicked");
+        System.out.println("🛍️ Продолжить покупки");
+        SceneNavigator.goToMain();
     }
 
     @FXML
     private void goBack() {
-        System.out.println("Go back clicked");
+        System.out.println("← Возврат на главную");
+        SceneNavigator.goToMain();
     }
 }

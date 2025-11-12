@@ -13,10 +13,14 @@ public class SupabaseClient {
     private final HttpClient httpClient;
 
     private SupabaseClient() {
-        // Замените на ваши реальные данные Supabase
-        this.supabaseUrl = "https://your-project.supabase.co";
-        this.supabaseKey = "your-anon-key";
+        // ⚠️ ЗАМЕНИТЕ НА ВАШИ ДАННЫЕ ИЗ SUPABASE!
+        // Supabase → Settings → API
+        this.supabaseUrl = "https://uarcxsotrpdnwabpgjhp.supabase.co";
+        this.supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVhcmN4c290cnBkbndhYnBnamhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI4NjU5OTMsImV4cCI6MjA3ODQ0MTk5M30.nR2JZDVWD3wtdVYehE6ps6x35NClNBw1niNEA42qKGc";
         this.httpClient = HttpClient.newHttpClient();
+
+        System.out.println("🔗 Supabase Client initialized");
+        System.out.println("   URL: " + supabaseUrl);
     }
 
     public static synchronized SupabaseClient getInstance() {

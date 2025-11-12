@@ -1,8 +1,8 @@
 package com.example.partsstore.controller;
 
-
 import com.example.partsstore.model.Category;
 import com.example.partsstore.service.PartsService;
+import com.example.partsstore.util.SceneNavigator;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -26,7 +26,7 @@ public class MainController {
 
     @FXML
     public void initialize() {
-        System.out.println(" MainController initialized!");
+        System.out.println("✅ MainController initialized!");
 
         partsService = new PartsService();
 
@@ -36,13 +36,13 @@ public class MainController {
 
         loadCategories();
 
-        System.out.println(" Loaded " + partsService.getCategories().size() + " categories");
-        System.out.println(" Loaded " + partsService.getParts().size() + " products");
+        System.out.println("📦 Loaded " + partsService.getCategories().size() + " categories");
+        System.out.println("🛍️ Loaded " + partsService.getParts().size() + " products");
     }
 
     private void loadCategories() {
         if (categoriesPane == null) {
-            System.err.println("CategoriesPane is null!");
+            System.err.println("❌ categoriesPane is null!");
             return;
         }
 
@@ -78,8 +78,8 @@ public class MainController {
         });
 
         card.setOnMouseClicked(e -> {
-            System.out.println("🖱️ Clicked: " + category.getName());
-            System.out.println("   Products: " + partsService.getPartsByCategory(category.getId()).size());
+            System.out.println("🖱️ Открытие категории: " + category.getName());
+            SceneNavigator.goToCategory(category);
         });
 
         return card;
@@ -88,34 +88,38 @@ public class MainController {
     @FXML
     private void handleSearch() {
         if (searchField == null) {
-            System.err.println(" searchField is null!");
+            System.err.println("❌ searchField is null!");
             return;
         }
 
         String query = searchField.getText().trim();
         if (!query.isEmpty()) {
-            System.out.println(" Searching: " + query);
-            System.out.println("  Found: " + partsService.searchParts(query).size() + " products");
+            System.out.println("🔍 Поиск: " + query);
+            // TODO: Создать страницу результатов поиска
         }
     }
 
     @FXML
     private void handleOrders() {
-        System.out.println(" Заказы clicked");
+        System.out.println("📦 Заказы clicked");
+        // TODO: Создать страницу заказов
     }
 
     @FXML
     private void handleFavorites() {
-        System.out.println(" Избранное clicked");
+        System.out.println("❤️ Избранное clicked");
+        // TODO: Создать страницу избранного
     }
 
     @FXML
     private void handleCart() {
-        System.out.println(" Корзина clicked");
+        System.out.println("🛒 Корзина clicked");
+        SceneNavigator.goToCart();
     }
 
     @FXML
     private void handleLogin() {
-        System.out.println(" Войти clicked");
+        System.out.println("👤 Войти clicked");
+        SceneNavigator.goToLogin();
     }
 }
