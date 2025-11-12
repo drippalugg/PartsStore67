@@ -51,8 +51,6 @@
             </HBox>
 
             <HBox spacing="15" alignment="CENTER_RIGHT">
-                <Button text="Продолжить покупки" onAction="#continueShopping"
-                        styleClass="secondary-button"/>
                 <Button fx:id="checkoutButton" text="Оформить заказ" onAction="#checkout"
                         styleClass="primary-button-large"/>
             </HBox>
