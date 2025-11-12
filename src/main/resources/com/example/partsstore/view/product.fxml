@@ -3,6 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.example.partsstore.controller.ProductController"
@@ -30,7 +32,9 @@
 
                 <!-- Product Image -->
                 <VBox alignment="CENTER" styleClass="product-image-box">
-                    <Label fx:id="iconLabel" text="📦" style="-fx-font-size: 150px;"/>
+                <ImageView fx:id="productImageView" fitWidth="300" fitHeight="300" preserveRatio="true">
+                    <Image url="@../../../placeholder.png"/>
+                </ImageView>
                 </VBox>
 
                 <!-- Product Info -->
@@ -52,6 +56,10 @@
                            styleClass="product-description"/>
 
                     <Separator/>
+
+                <Label text="Характеристики:" styleClass="section-subtitle"/>
+                <Label fx:id="specificationsLabel" text="" wrapText="true"
+                       styleClass="product-description" visible="false" managed="false"/>
 
                     <HBox spacing="15" alignment="CENTER_LEFT">
                         <Label text="Количество:" styleClass="product-info"/>
