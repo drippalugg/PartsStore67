@@ -69,6 +69,10 @@ public class SceneNavigator {
         loadScene("/com/example/partsstore/view/profile.fxml", "MasterParts - Профиль", 800, 600);
     }
 
+        public static void goToOrders() {
+        loadScene("/com/example/partsstore/view/orders.fxml", "MasterParts - Заказы", 1280, 800);
+    }
+
     private static void loadScene(String fxmlPath, String title, int width, int height) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource(fxmlPath));
