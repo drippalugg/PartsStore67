@@ -8,6 +8,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import java.util.Map;
 
 public class ProductController {
 
@@ -38,12 +41,14 @@ public class ProductController {
     @FXML
     private Button favoriteButton;
 
-    @FXML
-    private Label iconLabel;
 
     private Part currentPart;
     private CartManager cartManager;
+    @FXML
+        private ImageView productImageView;
 
+        @FXML
+        private Label specificationsLabel;
     @FXML
     public void initialize() {
         cartManager = CartManager.getInstance();
@@ -107,11 +112,29 @@ public class ProductController {
                     currentPart.getDescription() : "Описание товара");
         }
 
-        if (iconLabel != null) {
-            iconLabel.setText("📦");
-        }
-
-        updateFavoriteButton();
+        // Загрузка изображения товара
+                if (productImageView != null) {
+                                String imageUrl = currentPart.getImageUrl();
+                                if (imageUrl != null && !imageUrl.isEmpty()) {
+                                                    try {
+                                                                            Image image = new Image(imageUrl, true);
+                                                                            productImageView.setImage(image);
+                                                                        } catch (Exception e) {
+                                                                            System.err.println("Ошибка загрузки изображения: " + e.getMessage());
+                                                                        }
+                                                }
+                            }
+        
+                // Отображение характеристик товара
+                if (specificationsLabel != null && currentPart.getSpecifications() != null && !currentPart.getSpecifications().isEmpty()) {
+                                StringBuilder specs = new StringBuilder();
+                                for (Map.Entry<String, String> entry : currentPart.getSpecifications().entrySet()) {
+                                                    specs.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
+                                                }
+                                specificationsLabel.setText(specs.toString());
+                                specificationsLabel.setVisible(true);
+                                specificationsLabel.setManaged(true);
+                            }updateFavoriteButton();
     }
 
     private void updateFavoriteButton() {
