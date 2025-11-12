@@ -1,5 +1,8 @@
 package com.example.partsstore.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Part {
     private int id;
     private String name;
@@ -10,6 +13,8 @@ public class Part {
     private String brand;
     private String description;
     private String image;
+        private String imageUrl;
+        private Map<String, String> specifications;
 
     public Part() {}
 
@@ -49,6 +54,12 @@ public class Part {
 
     public String getImage() { return image; }
     public void setImage(String image) { this.image = image; }
+
+        public String getImageUrl() { return imageUrl; }
+        public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+
+        public Map<String, String> getSpecifications() { return specifications; }
+        public void setSpecifications(Map<String, String> specifications) { this.specifications = specifications; }
 
     public boolean hasDiscount() {
         return oldPrice != null && oldPrice > price;
