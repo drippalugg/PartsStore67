@@ -4,6 +4,7 @@ import com.example.partsstore.model.Category;
 import com.example.partsstore.model.Part;
 import com.example.partsstore.service.CartManager;
 import com.example.partsstore.service.PartsService;
+import com.example.partsstore.util.SceneNavigator;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -171,18 +172,15 @@ public class CategoryController {
 
     private void openProduct(Part part) {
         System.out.println("📦 Opening product: " + part.getName());
-        // TODO: Открыть страницу товара
-    }
+        SceneNavigator.goToProduct(part);    }
 
     @FXML
     private void goBack() {
         System.out.println("← Go back clicked");
-        // TODO: Вернуться на главную
-    }
+        SceneNavigator.goToMain();    }
 
     @FXML
     private void openCart() {
         System.out.println("🛒 Cart clicked");
-        // TODO: Открыть корзину
-    }
+        SceneNavigator.goToCart();    }
 }
