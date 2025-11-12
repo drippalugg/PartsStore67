@@ -95,7 +95,7 @@ public class MainController {
         String query = searchField.getText().trim();
         if (!query.isEmpty()) {
             System.out.println("🔍 Поиск: " + query);
-            // TODO: Создать страницу результатов поиска
+                        SceneNavigator.goToSearch(query);
         }
     }
 
