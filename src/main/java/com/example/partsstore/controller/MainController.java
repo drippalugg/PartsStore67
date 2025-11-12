@@ -102,7 +102,7 @@ public class MainController {
     @FXML
     private void handleOrders() {
         System.out.println("📦 Заказы clicked");
-        // TODO: Создать страницу заказов
+                SceneNavigator.goToOrders();
     }
 
     @FXML
