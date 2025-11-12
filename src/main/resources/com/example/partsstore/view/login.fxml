@@ -46,9 +46,6 @@
 
                 <Button text="Войти" onAction="#handleLogin" styleClass="primary-button-large"/>
                 <Button text="Зарегистрироваться" onAction="#handleRegister" styleClass="secondary-button"/>
-                <Button text="Переключить режим" onAction="#toggleMode" styleClass="link-button"/>
-
-                <Separator/>
 
                 <Button text="Продолжить как гость" onAction="#guestContinue" styleClass="link-button"/>
             </VBox>
