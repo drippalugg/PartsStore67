@@ -36,6 +36,27 @@ public class SceneNavigator {
         }
     }
 
+        public static void goToSearch(String query) {
+                    try {
+                                    FXMLLoader loader = new FXMLLoader(
+                                                        SceneNavigator.class.getResource("/com/example/partsstore/view/category.fxml")
+                                                    );
+                                    Parent root = loader.load();
+
+                                    CategoryController controller = loader.getController();
+                                    controller.setSearchQuery(query);
+
+                                    Scene scene = new Scene(root);
+                                    addCSS(scene);
+
+                                    MainApp.getPrimaryStage().setScene(scene);
+                                    MainApp.getPrimaryStage().setTitle("MasterParts - Поиск: " + query);
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                }
+
     public static void goToProduct(Part part) {
         try {
             FXMLLoader loader = new FXMLLoader(
