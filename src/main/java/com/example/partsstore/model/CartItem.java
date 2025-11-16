@@ -9,13 +9,36 @@ public class CartItem {
         this.quantity = quantity;
     }
 
-    public Part getPart() { return part; }
-    public void setPart(Part part) { this.part = part; }
+    public Part getPart() {
+        return part;
+    }
 
-    public int getQuantity() { return quantity; }
-    public void setQuantity(int quantity) { this.quantity = quantity; }
+    public void setPart(Part part) {
+        this.part = part;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public double getTotalPrice() {
-        return part.getPrice() * quantity;
+        if (part == null) {
+            return 0.0;
+        }
+        return ((double) part.getPrice()) * quantity;
+    }
+
+    public double getTotalOldPrice() {
+        if (part == null) {
+            return 0.0;
+        }
+        if (part.hasDiscount()) {
+            return ((double) part.getOldPrice()) * quantity;
+        }
+        return getTotalPrice();
     }
 }

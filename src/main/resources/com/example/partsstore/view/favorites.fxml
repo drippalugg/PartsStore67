@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.partsstore.controller.CategoryController"
+            fx:controller="com.example.partsstore.controller.FavoritesController"
             styleClass="root">
 
     <!-- Header -->
@@ -14,9 +12,8 @@
             <padding>
                 <Insets top="15" right="30" bottom="15" left="30"/>
             </padding>
-
             <Button text="← Назад" onAction="#goBack" styleClass="back-button"/>
-            <Label text="❤️ Избранное" styleClass="page-title"/>
+            <Label text="💖 Избранное" styleClass="page-title"/>
         </HBox>
     </top>
 
@@ -27,7 +24,6 @@
                 <padding>
                     <Insets top="30" right="30" bottom="30" left="30"/>
                 </padding>
-
                 <FlowPane fx:id="productsPane" hgap="20" vgap="20" alignment="CENTER"
                           prefWrapLength="1200"/>
             </VBox>

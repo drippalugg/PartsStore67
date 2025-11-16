@@ -1,9 +1,7 @@
 package com.example.partsstore.controller;
 
-import com.example.partsstore.model.Category;
 import com.example.partsstore.model.Part;
 import com.example.partsstore.service.CartManager;
-import com.example.partsstore.service.PartsService;
 import com.example.partsstore.util.SceneNavigator;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,66 +9,40 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class CategoryController {
-    @FXML
-    private Label titleLabel;
-    @FXML
-    private TextField searchField;
+public class FavoritesController {
     @FXML
     private FlowPane productsPane;
-    @FXML
-    private Label cartBadge;
 
-    private PartsService partsService;
     private CartManager cartManager;
-    private Category currentCategory;
-    private String searchQuery;
 
     @FXML
     public void initialize() {
-        partsService = new PartsService();
         cartManager = CartManager.getInstance();
-        updateCartBadge();
-        System.out.println("✅ CategoryController initialized!");
+        loadFavorites();
+        System.out.println("✅ FavoritesController initialized!");
     }
 
-    public void setCategory(Category category) {
-        this.currentCategory = category;
-        if (titleLabel != null) {
-            titleLabel.setText(category.getName());
-        }
-        loadProducts(partsService.getPartsByCategory(category.getId()));
-    }
-
-    public void setSearchQuery(String query) {
-        this.searchQuery = query;
-        if (titleLabel != null) {
-            titleLabel.setText("Результаты поиска: " + query);
-        }
-        loadProducts(partsService.searchParts(query));
-    }
-
-    private void loadProducts(ObservableList<Part> products) {
+    private void loadFavorites() {
         if (productsPane == null) {
             System.err.println("❌ productsPane is null!");
             return;
         }
 
         productsPane.getChildren().clear();
+        ObservableList<Part> favorites = cartManager.getFavorites();
 
-        if (products.isEmpty()) {
-            Label noProducts = new Label("Товары не найдены");
-            noProducts.setStyle("-fx-font-size: 18px; -fx-text-fill: #666;");
-            productsPane.getChildren().add(noProducts);
+        if (favorites.isEmpty()) {
+            Label noFavorites = new Label("Избранное пусто");
+            noFavorites.setStyle("-fx-font-size: 18px; -fx-text-fill: #666;");
+            productsPane.getChildren().add(noFavorites);
             return;
         }
 
-        for (Part part : products) {
+        for (Part part : favorites) {
             VBox productCard = createProductCard(part);
             productsPane.getChildren().add(productCard);
         }
@@ -121,11 +93,11 @@ public class CategoryController {
         cartButton.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 10 20;");
         cartButton.setOnAction(e -> addToCart(part));
 
-        Button favoriteButton = new Button(cartManager.isFavorite(part) ? "💖" : "🤎");
-        favoriteButton.setStyle("-fx-font-size: 18px; -fx-cursor: hand;");
-        favoriteButton.setOnAction(e -> toggleFavorite(part, favoriteButton));
+        Button removeFavoriteButton = new Button("💖");
+        removeFavoriteButton.setStyle("-fx-font-size: 18px; -fx-cursor: hand;");
+        removeFavoriteButton.setOnAction(e -> removeFavorite(part));
 
-        buttonsBox.getChildren().addAll(cartButton, favoriteButton);
+        buttonsBox.getChildren().addAll(cartButton, removeFavoriteButton);
 
         card.getChildren().addAll(iconLabel, nameLabel, articleLabel, brandLabel, priceBox, buttonsBox);
 
@@ -140,26 +112,13 @@ public class CategoryController {
 
     private void addToCart(Part part) {
         cartManager.addToCart(part, 1);
-        updateCartBadge();
         System.out.println("🛒 Added to cart: " + part.getName());
     }
 
-    private void toggleFavorite(Part part, Button button) {
-        if (cartManager.isFavorite(part)) {
-            cartManager.removeFromFavorites(part);
-            button.setText("🤎");
-        } else {
-            cartManager.addToFavorites(part);
-            button.setText("💖");
-        }
-    }
-
-    private void updateCartBadge() {
-        if (cartBadge != null) {
-            int count = cartManager.getTotalItems();
-            cartBadge.setText(count > 0 ? String.valueOf(count) : "");
-            cartBadge.setVisible(count > 0);
-        }
+    private void removeFavorite(Part part) {
+        cartManager.removeFromFavorites(part);
+        loadFavorites();
+        System.out.println("💔 Removed from favorites: " + part.getName());
     }
 
     private void openProduct(Part part) {
@@ -171,11 +130,5 @@ public class CategoryController {
     private void goBack() {
         System.out.println("← Go back clicked");
         SceneNavigator.goToMain();
-    }
-
-    @FXML
-    private void openCart() {
-        System.out.println("🛒 Cart clicked");
-        SceneNavigator.goToCart();
     }
 }

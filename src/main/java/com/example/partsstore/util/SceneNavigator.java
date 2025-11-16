@@ -36,26 +36,26 @@ public class SceneNavigator {
         }
     }
 
-        public static void goToSearch(String query) {
-                    try {
-                                    FXMLLoader loader = new FXMLLoader(
-                                                        SceneNavigator.class.getResource("/com/example/partsstore/view/category.fxml")
-                                                    );
-                                    Parent root = loader.load();
+    public static void goToSearch(String query) {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    SceneNavigator.class.getResource("/com/example/partsstore/view/category.fxml")
+            );
+            Parent root = loader.load();
 
-                                    CategoryController controller = loader.getController();
-                                    controller.setSearchQuery(query);
+            CategoryController controller = loader.getController();
+            controller.setSearchQuery(query);
 
-                                    Scene scene = new Scene(root);
-                                    addCSS(scene);
+            Scene scene = new Scene(root);
+            addCSS(scene);
 
-                                    MainApp.getPrimaryStage().setScene(scene);
-                                    MainApp.getPrimaryStage().setTitle("MasterParts - Поиск: " + query);
+            MainApp.getPrimaryStage().setScene(scene);
+            MainApp.getPrimaryStage().setTitle("MasterParts - Поиск: " + query);
 
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void goToProduct(Part part) {
         try {
@@ -90,8 +90,12 @@ public class SceneNavigator {
         loadScene("/com/example/partsstore/view/profile.fxml", "MasterParts - Профиль", 800, 600);
     }
 
-        public static void goToOrders() {
+    public static void goToOrders() {
         loadScene("/com/example/partsstore/view/orders.fxml", "MasterParts - Заказы", 1280, 800);
+    }
+
+    public static void goToFavorites() {
+        loadScene("/com/example/partsstore/view/favorites.fxml", "MasterParts - Избранное", 1280, 800);
     }
 
     private static void loadScene(String fxmlPath, String title, int width, int height) {

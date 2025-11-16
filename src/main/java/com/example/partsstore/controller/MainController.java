@@ -12,13 +12,10 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
 public class MainController {
-
     @FXML
     private Label locationLabel;
-
     @FXML
     private TextField searchField;
-
     @FXML
     private FlowPane categoriesPane;
 
@@ -27,15 +24,11 @@ public class MainController {
     @FXML
     public void initialize() {
         System.out.println("✅ MainController initialized!");
-
         partsService = new PartsService();
-
         if (locationLabel != null) {
             locationLabel.setText("📍 Энгельс");
         }
-
         loadCategories();
-
         System.out.println("📦 Loaded " + partsService.getCategories().size() + " categories");
         System.out.println("🛍️ Loaded " + partsService.getParts().size() + " products");
     }
@@ -47,7 +40,6 @@ public class MainController {
         }
 
         categoriesPane.getChildren().clear();
-
         for (Category category : partsService.getCategories()) {
             VBox categoryCard = createCategoryCard(category);
             categoriesPane.getChildren().add(categoryCard);
@@ -95,20 +87,20 @@ public class MainController {
         String query = searchField.getText().trim();
         if (!query.isEmpty()) {
             System.out.println("🔍 Поиск: " + query);
-                        SceneNavigator.goToSearch(query);
+            SceneNavigator.goToSearch(query);
         }
     }
 
     @FXML
     private void handleOrders() {
         System.out.println("📦 Заказы clicked");
-                SceneNavigator.goToOrders();
+        SceneNavigator.goToOrders();
     }
 
     @FXML
     private void handleFavorites() {
-        System.out.println("❤️ Избранное clicked");
-        // TODO: Создать страницу избранного
+        System.out.println("💖 Избранное clicked");
+        SceneNavigator.goToFavorites();
     }
 
     @FXML

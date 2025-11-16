@@ -1,6 +1,5 @@
 package com.example.partsstore.model;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class Part {
@@ -37,7 +36,7 @@ public class Part {
     public int getCategoryId() { return categoryId; }
     public void setCategoryId(int categoryId) { this.categoryId = categoryId; }
 
-    public double getPrice() { return price; }
+    public Object getPrice() { return price; }
     public void setPrice(double price) { this.price = price; }
 
     public Double getOldPrice() { return oldPrice; }
